@@ -10,7 +10,9 @@ const initialState={
   isLoading: false,
   isError: false,
   products:[],
-  featureProducts:[]
+  featureProducts:[],
+  isSingleLoading:false,
+  singleProduct: {}
 }
 
 
@@ -31,12 +33,25 @@ const getProducts = async(url)=>{
 };
 
 
+const getSingleProduct =async(url)=>{
+  dispatch({type:"SET_SINGLE_LOADING"});
+  try{
+    const res = await axios.get(url);
+    const singleProduct = await res.data;
+    dispatch({type:"SET_SINGLE_PRODUCT", payload:singleProduct});
+  }catch(error){
+    dispatch({type:"SET_SINGLE_ERROR"})
+  }
+
+}
+
+
 useEffect(()=>{
   getProducts(API);
 },[])
 
   return (
-    <AppContext.Provider value={{...state }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{...state, getSingleProduct }}>{children}</AppContext.Provider>
   );
 };
 

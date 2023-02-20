@@ -22,7 +22,7 @@ const Header = () => {
 const MainHeader = styled.header`
   padding: 0 4.8rem;
   height: 12rem;
-  background-color: #B9F3E4;
+  background-color: rgba(81,56,238,0.4);;
   display: flex;
   justify-content: space-between;
   align-items: center;
