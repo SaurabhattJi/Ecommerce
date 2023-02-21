@@ -8,6 +8,7 @@ import{Container} from "./styles/Container";
 import FormatPrice from "./components/helpers/FormatPrice";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import { MdSecurity } from "react-icons/md";
+import Star from "./components/Star";
 
 
 
@@ -40,8 +41,7 @@ const SingleProduct = () => {
           </div>
           <div className="product-data">
             <h2>{name}</h2>
-            <p>{stars}</p>
-            <p>{reviews} Reviews</p>
+            <Star stars={stars} reviews={reviews}/>
             <p className="product-data-price">
               MRP: 
               <del>
@@ -96,13 +96,16 @@ const Wrapper = styled.section`
   .container {
     padding: 9rem 0;
   }
+  .product_images {
+    display: flex;
+    align-items: center;
+  }
   .product-data {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     gap: 2rem;
-
     .product-data-warranty {
       width: 100%;
       display: flex;
@@ -110,10 +113,8 @@ const Wrapper = styled.section`
       align-items: center;
       border-bottom: 1px solid #ccc;
       margin-bottom: 1rem;
-
       .product-warranty-data {
         text-align: center;
-
         .warranty-icon {
           background-color: rgba(220, 220, 220, 0.5);
           border-radius: 50%;
@@ -127,7 +128,6 @@ const Wrapper = styled.section`
         }
       }
     }
-
     .product-data-price {
       font-weight: bold;
     }
@@ -139,12 +139,10 @@ const Wrapper = styled.section`
       flex-direction: column;
       gap: 1rem;
       font-size: 1.8rem;
-
       span {
         font-weight: bold;
       }
     }
-
     hr {
       max-width: 100%;
       width: 90%;
@@ -153,16 +151,21 @@ const Wrapper = styled.section`
       color: red;
     }
   }
-
   .product-images {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-
+  .page_loading {
+    font-size: 3.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
     padding: 0 2.4rem;
   }
 `;
+
 
 export default SingleProduct;
