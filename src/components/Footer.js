@@ -22,13 +22,13 @@ const Footer = () => {
             </div>
           </div>
         </section>
-        {/* footer section */}
+        
 
         <footer>
           <div className="container grid grid-four-column">
             <div className="footer-about">
               <h3>Saurabh Bhatt</h3>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+              <p>Frontend Web Developer </p>
             </div>
             <div className="footer-subscribe">
               <h3>Subscribe to get important updates</h3>
