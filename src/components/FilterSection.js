@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components';
 import { useFilterContext } from './context/filter_context';
+import { FaCheck } from "react-icons/fa";
 
 const FilterSection = () => {
   const {
-      filters:{text,category},
+      filters:{text,category,color},
       updateFilterValue,
        all_products,
     }=useFilterContext();
@@ -13,10 +14,16 @@ const FilterSection = () => {
       let newValue = data.map((curlElem)=>{
         return curlElem[property];
       });
-      return( newValue = ["all",...new Set(newValue)]);
+
+      if(property === "colors"){
+       newValue = newValue.flat();
+      }
+        return( newValue = ["all",...new Set(newValue)]);
     }
 
   const categoryData = getUniqueData(all_products, "category");
+  const companyData = getUniqueData(all_products, "company");
+  const colorsData = getUniqueData(all_products, "colors");
 
   return (
     <Wrapper>
@@ -36,12 +43,64 @@ const FilterSection = () => {
         <div>
           {
             categoryData.map((curlElem,i)=>{
-              return (<button
-              key={i}
-              type="button" name='category' onClick={updateFilterValue} value={curlElem}>
+              return (
+              <button
+                key={i}
+                type="button" name='category' onClick={updateFilterValue} value={curlElem}  className={curlElem === category ? "active" : ""}>
                 {curlElem}
               </button>
               )
+            })
+          }
+        </div>
+      </div>
+
+      <div className="filter-company">
+        <h3>Company</h3>
+        <form action="#">
+          <select name="company" id="company" className='filter-company--select' onClick={updateFilterValue}>
+            {
+              companyData.map((curElem,i)=>{
+                return(
+                  <option key={i} value={curElem} name="company">{curElem}</option>
+                )
+                
+              })
+            }
+          </select>
+        </form>
+      </div>
+
+      <div className="filter-colors colors">
+        <h3>Colors</h3>
+        <div className="filter-color-style">
+          {
+            colorsData.map((curlElem,i)=>{
+              if(curlElem === "all"){
+                return(
+                <button type='button' 
+                className='color-all--style'
+                key={i}
+                value={curlElem}
+                name="color"
+                onClick={updateFilterValue}>
+                All
+                </button>
+              )
+
+              }
+              return(
+                <button type='button' 
+                style={{backgroundColor:curlElem}} 
+                className={color === curlElem ?  'btnStyle active': "btnStyle"}
+                key={i}
+                value={curlElem}
+                name="color"
+                onClick={updateFilterValue}>
+                {color === curlElem ? <FaCheck className="checkStyle" /> : null}
+                </button>
+              )
+
             })
           }
         </div>
