@@ -7,15 +7,17 @@ const MyImage = ({img = [{url:""}]}) => {
   return (
     <Wrapper>
       <div className="grid grid-four-column">
-        {img.map((curElm,i)=>{
-            return(
-                <figure>
-                    <img src={curElm.url}
-                     alt={curElm.filename}
-                     className="box-image--style"
-                      key={i}
-                     onClick={() => setMainImage(curElm)} />
-                </figure>
+      {img.map((curElm, index) => {
+          return (
+            <figure>
+              <img
+                src={curElm.url}
+                alt={curElm.filename}
+                className="box-image--style"
+                key={index}
+                onClick={() => setMainImage(curElm)}
+              />
+            </figure>
             )
 
         })}

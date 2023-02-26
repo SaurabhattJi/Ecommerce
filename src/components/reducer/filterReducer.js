@@ -2,10 +2,8 @@ const filterReducer = (state, action) => {
     switch (action.type) {
       case "LOAD_FILTER_PRODUCTS":
         let priceArray = action.payload.map((curElem) => curElem.price);
-        console.log(priceArray);
-
+        
         let maxPrice = Math.max(...priceArray);
-        console.log(maxPrice);
 
         return {
           ...state,
@@ -117,20 +115,20 @@ const filterReducer = (state, action) => {
           filter_products: tempFilterProduct,
         };
   
-    case "FILTERS_CLEAR":
-      return{
-        ...state,
-        filters:{
-          ...state.filters,
-           text:"",
-          category:"all",
-          company:"all",
-          color:"all",
-          maxPrice:0,
-          price:state.filters.maxPrice,
-          minPrice:state.filters.maxPrice,
-        }
-      }
+        case "FILTERS_CLEAR":
+          return {
+            ...state,
+            filters: {
+              ...state.filters,
+              text: "",
+              category: "all",
+              company: "all",
+              color: "all",
+              maxPrice: 0,
+              price: state.filters.maxPrice,
+              minPrice: state.filters.maxPrice,
+            },
+          };
       default:
         return state;
     }
