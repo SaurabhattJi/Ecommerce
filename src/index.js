@@ -15,7 +15,6 @@ root.render(
       <CartProvider>
       <App/>
       </CartProvider>
-      
     </FilterContextProvider>
   </AppProvider>
 );

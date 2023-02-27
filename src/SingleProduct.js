@@ -22,10 +22,12 @@ const SingleProduct = () => {
 
   const{id}= useParams();
 
-  const{id:alias, name, image, company, price, description, category, stock, stars, reviews}=singleProduct;
+  const{id: name, image, company, price, description, category, stock, stars, reviews}=singleProduct;
 
+ 
   useEffect(()=>{
     getSingleProduct(`${API}?id=${id}`)
+    // eslint-disable-next-line 
   },[])
 
   if(isSingleLoading){
@@ -85,6 +87,9 @@ const SingleProduct = () => {
               </p>
               <p>
                 Brand :<span> {company} </span>
+              </p>
+              <p>
+                Category:<span>{category}</span>
               </p>
               </div>
               <hr />

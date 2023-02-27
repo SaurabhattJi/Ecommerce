@@ -5,14 +5,14 @@ import { FaTrash } from 'react-icons/fa';
 import { useCartContext } from './context/cart_context';
 
 const CartItem = ({id,name,price,image,color,amount}) => {
-    const setDecrease = () => {
-        // amount > 1 ? setAmount(amount-1) : setAmount(1);
-    };
-    const setIncrease = () => {
-        // amount < stock ? setAmount(amount+1) : setAmount(stock);
-    };
+    // const setDecrease = () => {
+    //     // amount > 1 ? setAmount(amount-1) : setAmount(1);
+    // };
+    // const setIncrease = () => {
+    //     // amount < stock ? setAmount(amount+1) : setAmount(stock);
+    // };
 
-    const {removeItem} = useCartContext();
+    const {removeItem,setDecrement,setIncrement} = useCartContext();
   return (
     <div className='card_heading grid grid-five-column'>
         <div className="cart-image--name">
@@ -33,9 +33,9 @@ const CartItem = ({id,name,price,image,color,amount}) => {
             <p><FormatPrice price={price}/></p>
         </div>
         <CartAmountToggle
-    amount={amount}
-    setDecrease={setDecrease}
-    setIncrease={setIncrease} 
+        amount={amount}
+        setDecrease={()=>setDecrement(id)}
+        setIncrease={()=>setIncrement(id)} 
     />
 
     <div className="cart-hide">
